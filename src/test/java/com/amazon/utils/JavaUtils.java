@@ -105,7 +105,6 @@ public class JavaUtils {
 		FileReader reader = new FileReader("./config.properties");
 		Properties prop = new Properties();
 		prop.load(reader);
-
 		String propValue = prop.getProperty(key);
 		System.out.println("Property Value for " + key + " is " + propValue);
 		return propValue;

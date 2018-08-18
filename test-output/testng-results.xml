@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+    <line>
+      <![CDATA[URL is launched and user is on login page ]]>
+    </line>
+    <line>
+      <![CDATA[Browser launched]]>
+    </line>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="62573" started-at="2018-08-18T05:11:58Z" finished-at="2018-08-18T05:13:00Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="62573" started-at="2018-08-18T05:11:58Z" finished-at="2018-08-18T05:13:00Z">
+      <class name="com.amazon.tests.TC001_AllMob">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.amazon.tests.TC001_AllMob@59ec2012]" name="setup" is-config="true" duration-ms="16255" started-at="2018-08-18T05:11:58Z" finished-at="2018-08-18T05:12:14Z">
+          <reporter-output>
+            <line>
+              <![CDATA[URL is launched and user is on login page ]]>
+            </line>
+            <line>
+              <![CDATA[Browser launched]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="login()[pri:0, instance:com.amazon.tests.TC001_AllMob@59ec2012]" name="login" duration-ms="46113" started-at="2018-08-18T05:12:14Z" finished-at="2018-08-18T05:13:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method status="PASS" signature="close()[pri:0, instance:com.amazon.tests.TC001_AllMob@59ec2012]" name="close" is-config="true" duration-ms="184" started-at="2018-08-18T05:13:00Z" finished-at="2018-08-18T05:13:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- com.amazon.tests.TC001_AllMob -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

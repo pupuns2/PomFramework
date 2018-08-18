@@ -89,6 +89,12 @@ import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
+
+/**
+ * 
+ * @author aravindanathdm
+ *
+ */
 public class BasePage extends JavaUtils {
 	public static String subject;
 	public WebDriver driver;
@@ -104,11 +110,9 @@ public class BasePage extends JavaUtils {
 
 	public LoginPage gotoLoginPage() throws IOException {
 		log.info("User is attempting to launch  GV application.");
-		// URL_GV URL_GV_Auto
-		driver.get(getPropValue("URL_GV"));
-		// driver.get(Path.URL_GV_QAServer);
+		driver.get(getPropValue("URL"));
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
+		driver.manage().window().fullscreen();
 		driver.manage().deleteAllCookies();
 		Reporter.log("URL is launched and user is on login page ");
 		log.info("Application is sucessfully launched. ");
@@ -323,7 +327,7 @@ public class BasePage extends JavaUtils {
 		if (browser.equalsIgnoreCase("Firefox"))
 			driver = new FirefoxDriver();
 		else if (browser.equalsIgnoreCase("Chrome")) {
-			File chromedriver = new File("./drivers/chromedriver.exe");
+			File chromedriver = new File(System.getProperty("user.dir")+"/drivers/chromedriver");
 			// Create object of ChromeOptions class
 			ChromeOptions options = new ChromeOptions();
 			// add parameter which will disable the extension
@@ -339,7 +343,7 @@ public class BasePage extends JavaUtils {
 
 			// Start the Chrome session
 			log.info("webdriver.chrome.driver" + chromedriver.getAbsolutePath());
-			System.setProperty("webdriver.chrome.driver", chromedriver.getAbsolutePath());
+			System.setProperty("webdriver.chrome.driver", "/Users/aravindanathdm/Documents/Aravinda/chromedriver");
 			driver = new ChromeDriver(options);
 		}
 
@@ -409,7 +413,7 @@ public class BasePage extends JavaUtils {
 	}
 
 	public void waitingForTheElementToLoad(WebElement element) {
-		WebDriverWait wait = new WebDriverWait(driver, 90);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
 
@@ -611,10 +615,10 @@ public class BasePage extends JavaUtils {
 		Thread.sleep(2000);
 		log.info("User is attempting to logout. ");
 		scrollup("1000");
-		waitForElementVisibility(HomePage.logoutDropdown);
-		click(HomePage.logoutDropdown);
-		Thread.sleep(2000);
-		click(HomePage.logoutButton);
+//		waitForElementVisibility(HomePage.logoutDropdown);
+//		click(HomePage.logoutDropdown);
+//		Thread.sleep(2000);
+//		click(HomePage.logoutButton);
 		log.info(" ");
 		System.out.println("Logged Out sucessfuly");
 		log.info("user has Logged Out sucessfuly");
