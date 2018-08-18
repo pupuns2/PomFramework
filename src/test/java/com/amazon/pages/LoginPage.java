@@ -15,20 +15,21 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import com.relevantcodes.extentreports.ExtentTest;
+
 public class LoginPage extends BasePage {
-	public WebDriver driver;
 
 	public LoginPage(WebDriver driver) {
 		super(driver);
 
 		PageFactory.initElements(driver, this);
-		// waitingForTheElementToLoad(emailTextField);
-
 	}
 
-	@FindBy(xpath ="//*[@id=\"nav-link-yourAccount\"]/span[1]")
+	// waitingForTheElementToLoad(emailTextField);
+
+	@FindBy(xpath = "//*[@id=\"nav-link-yourAccount\"]/span[1]")
 	public WebElement signIn;
-	
+
 	@FindBy(id = "ap_email")
 	private WebElement amazonEmail;
 
@@ -50,29 +51,21 @@ public class LoginPage extends BasePage {
 	@FindBy(xpath = "//*[@alt='Honor Play']")
 	public WebElement honor;
 
-	public ElectronicPage categoryTab() throws IOException {
-		click(categoryTab);
-		click(mobile);
-		click(allMobile);
-		click(honor);
-		screenShot();
-		return new ElectronicPage(driver);
-	}
-	
-	protected HashMap<String, String> login;
+	protected HashMap<String, String> lp;
 
 	/*
 	 * This method is used to login as different user
 	 * 
 	 */
-	public HomePage login(String email, String pass) throws InterruptedException {
-//		signIn.click();
+	public HomePage login(String loginVal) throws InterruptedException {
+		// signIn.click();
+		 lp = readExcelData("LOGIN", loginVal);
 		click(signIn);
 		waitingForTheElementToLoad(amazonEmail);
-		amazonEmail.sendKeys(email);
+		amazonEmail.sendKeys(lp.get("USERNAME"));
 		continueBtn.click();
-		password.sendKeys(pass,Keys.ENTER);
-		//continueBtn.click();
+		password.sendKeys(lp.get("PASSWORD"), Keys.ENTER);
+		// continueBtn.click();
 
 		return new HomePage(driver);
 

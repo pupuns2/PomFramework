@@ -17,12 +17,17 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.Reporter;
 
+import com.relevantcodes.extentreports.ExtentTest;
+
 public class HomePage extends BasePage {
 
 	public HomePage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
 	}
+
+	@FindBy(id = "twotabsearchtextbox")
+	public WebElement search;
 
 	@FindBy(xpath = "//*[@id=\"nav-link-shopall\"]/span[2]")
 	public WebElement categoryTab;
@@ -36,13 +41,12 @@ public class HomePage extends BasePage {
 	@FindBy(linkText = "Honor Play")
 	public WebElement honorPlay;
 
-	public ElectronicPage categoryTab() throws IOException {
-		click(categoryTab);
-		click(mobile);
-		click(allMobile);
-		click(honorPlay);
-		screenShot();
-		return new ElectronicPage(driver);
+	protected HashMap<String, String> hp;
+
+	public ProductPage searchProduct(String loginVal) throws IOException, InterruptedException {
+		hp = readExcelData("SEARCH", loginVal);
+		search.sendKeys(hp.get("PRODUCTNAME"), Keys.ENTER);
+		return new ProductPage(driver);
 	}
 
 }

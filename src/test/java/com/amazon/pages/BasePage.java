@@ -75,6 +75,7 @@ import org.openqa.selenium.internal.Locatable;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
@@ -84,6 +85,7 @@ import org.testng.Reporter;
 
 import com.amazon.utils.JavaUtils;
 import com.amazon.utils.Path;
+import com.relevantcodes.extentreports.ExtentTest;
 
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
@@ -98,20 +100,26 @@ import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 public class BasePage extends JavaUtils {
 	public static String subject;
 	public WebDriver driver;
+//	public ExtentTest test;
 	Logger log = Logger.getLogger("devpinoyLogger");
 
 	// public static String screenshotFile;
 
-	public BasePage(WebDriver driver) {
-		this.driver = driver;
-
-		// PropertyConfigurator.configure("Log4j.properties");
+//	public BasePage(WebDriver driver) {
+//		this.driver = driver;
+//
+//		// PropertyConfigurator.configure("Log4j.properties");
+//	}
+	
+	public BasePage(WebDriver driver  ){
+		this.driver=driver;
+		PageFactory.initElements(driver, this);
 	}
 
 	public LoginPage gotoLoginPage() throws IOException {
 		log.info("User is attempting to launch  GV application.");
 		driver.get(getPropValue("URL"));
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().fullscreen();
 		driver.manage().deleteAllCookies();
 		Reporter.log("URL is launched and user is on login page ");
@@ -622,7 +630,7 @@ public class BasePage extends JavaUtils {
 		log.info(" ");
 		System.out.println("Logged Out sucessfuly");
 		log.info("user has Logged Out sucessfuly");
-		return new LoginPage(driver);
+		return new LoginPage(driver );
 
 	}
 
